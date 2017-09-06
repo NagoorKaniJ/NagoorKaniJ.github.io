@@ -21,7 +21,37 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/least-square-residual-classifier-part-ii.html">Least square residual classifier Part - II <!-- In the name of Allah --></a></h1>
+                    <h1 class="entry-title"><a href="/about-me.html">About Me <!-- In the name of Allah--></a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2017-09-06T00:00:00+01:00">
+                Published: Wed 06 September 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nagoor-kanij.html">Nagoor Kani.J</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info --><p>I am J.Nagoor Kani, PhD student in the department of petroleum engineering, Heriot Watt University.
+I completed my master's degree in computational science at Linkoping University and worked as
+Numerical Analyst in the field of computational fluid dynamics applied to drilling engineering.
+I am proud that I took birth in Tamil Nadu (Virudhunagar) and following the life style of Islam.
+My research interest is in teaching physics and mathematics to
+biological intelligent machines and artificial intelligent machines.
+My email id is kani4jasmines@gmail.com</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/least-square-residual-classifier-part-ii.html" rel="bookmark"
+                           title="Permalink to Least square residual classifier Part - II">Least square residual classifier Part - II <!-- In the name of Allah --></a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2017-06-21T18:32:00+01:00">
                 Published: Wed 21 June 2017
@@ -32,214 +62,17 @@
         </address>
 <p>In <a href="/category/blog.html">Blog</a>.</p>
 
-</footer><!-- /.post-info --><!--To display line numbers, use a path-less shebang instead of colons:-->
+</footer><!-- /.post-info -->                <!--To display line numbers, use a path-less shebang instead of colons:-->
 
 <!--    #!python
     print("The path-less shebang syntax *will* show line numbers.")-->
 
 <p>In the <a href="{{SITEURL}}content/ONEsalam.md">Least square residual Part - I</a>, classification algorithm   called <strong>least square residual classifier</strong>  based on singular value decomposition was presented and applied on the MNIST handwritten digit recognition task. Please
 read the mentioned post before proceeding.</p>
-<p>In this post, we introduce <strong>least square residual classifier</strong> based on autoencoders and applied on the same MNIST handwritten digit recognition task.</p>
-<!--[Building Autoencoders in Keras](https://blog.keras.io/building-autoencoders-in-keras.html)-->
-
-<p>This <a href="https://blog.keras.io/building-autoencoders-in-keras.html">Building Autoencoders in Keras</a>  post has an excellent explanation on autoencoders.</p>
-<p>I am suggesting to read the above mentioned  post before proceeding further.</p>
-<p>Again as mention in the <a href="{{SITEURL}}content/ONEsalam.md">post</a>, Each digit of specific class <span class="math">\(i=0~\cdots~9\)</span> is assumed to attracted to a certain low dimensional subspace.
-Such compression of the digit vector of class <span class="math">\(\alpha\)</span> to  the corresponding low dimensional subspace  is done by the encoding segment of the  autoencoder belonging to class <span class="math">\(\alpha\)</span>.</p>
-<p>After compression, the digit can be reconstructed by the decoding segment of the same autoencoder. The resultant reconstruction error of the unknown digit from all the encoders of 10 digits
-is used as a yard stick to classify the digit.  </p>
-<p>Since each digit is well characterised by the autoencoder of its own kind, we expect the norm of the residual vector computed from the reconstruction using autoencoder of the same kind is less than the residual vector computed from the reconstruction using autoencoder of  the other classes.</p>
-<p>More specifically, for a given unknown digit, if we compute its relative residual in all 10 reconstructions, classify the unknown digit to the class with the least reconstruction error.</p>
-<hr>
-<hr>
-<h2>Implementation</h2>
-<p>Now let us implement the least square residual classifier to classify MNIST digits:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-</pre></div>
-
-
-<p>We now normalize all values between 0 and 1 and we now flatten the <span class="math">\(28~\times~28\)</span> images into vectors of size 784.</p>
-<div class="highlight"><pre><span></span><span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
-<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
-<span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])))</span>
-<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">x_test</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])))</span>
-</pre></div>
-
-
-<p>we now partition the x_train based on the ten classes and store in a list.</p>
-<div class="highlight"><pre><span></span><span class="n">x_train_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">components</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">k</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">x_train_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="n">components</span><span class="p">])</span>
-</pre></div>
-
-
-<!--  # print 'salam ', k, x_train[components].shape-->
-
-<p>we now build autoencoder for each digit classes.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Dense</span>
-<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
-<span class="n">autoencoder_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">input_img</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">784</span><span class="p">,))</span>
-    <span class="n">encoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">input_img</span><span class="p">)</span>
-    <span class="n">encoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">encoded</span><span class="p">)</span>
-    <span class="n">encoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">encoded</span><span class="p">)</span>
-
-    <span class="n">decoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">encoded</span><span class="p">)</span>
-    <span class="n">decoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">decoded</span><span class="p">)</span>
-    <span class="n">decoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)(</span><span class="n">decoded</span><span class="p">)</span>
-
-    <span class="n">autoencoder</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">input_img</span><span class="p">,</span> <span class="n">decoded</span><span class="p">)</span>
-
-    <span class="n">autoencoder_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">autoencoder</span><span class="p">)</span>
-</pre></div>
-
-
-<!-- First, we'll configure our model to use a per-pixel binary crossentropy loss, and the Adadelta optimizer:-->
-
-<!--    :::python  -->
-
-<!--  print 'salam compiling ...'-->
-
-<!--  # autoencoder = autoencode_list[5]-->
-
-<!--    :::python-->
-
-<p>First, we'll configure our model to use a per-pixel binary crossentropy loss, and the Adadelta optimizer:</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">autoencoder_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adadelta&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Now let's train our autoencoder for 100 epochs:</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="k">print</span> <span class="s1">&#39;--------------------modelling digit class---------------------- &#39;</span><span class="p">,</span> <span class="n">k</span>
-    <span class="n">autoencoder_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train_list</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">x_train_list</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
-                    <span class="n">nb_epoch</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-                    <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
-                    <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-                    <span class="p">)</span>
-</pre></div>
-
-
-<p>we now reconstruct the training digits using autoencoders of all 10 classes and  compute the respective reconstruction error.</p>
-<div class="highlight"><pre><span></span><span class="n">n_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">y_train_predict</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_train</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">residual_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-        <span class="n">x_predict</span> <span class="o">=</span> <span class="n">autoencoder_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">residual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_predict</span><span class="p">)</span>
-        <span class="n">residual_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">residual</span>
-
-    <span class="n">y_train_predict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">residual_list</span><span class="p">)</span>
-</pre></div>
-
-
-<!--print 'salam training error', np.mean(np.sqr(y_train - y_train_predict))-->
-
-<p>we now reconstruct the test digits using autoencoders of all 10 classes and  compute the respective reconstruction error.</p>
-<div class="highlight"><pre><span></span><span class="n">n_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">y_test_predict</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_test</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">residual_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-        <span class="n">x_predict</span> <span class="o">=</span> <span class="n">autoencoder_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">residual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_predict</span><span class="p">)</span>
-        <span class="n">residual_list</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">residual</span>
-
-    <span class="n">y_test_predict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">residual_list</span><span class="p">)</span>
-</pre></div>
-
-
-<!--print 'salam test error', np.mean(np.sqr(y_test - y_test_predict))-->
-
-<p><strong>The autoencoder based least square residual classifier</strong> obtains  training error of ~0.05 and
-test error of ~0.05.</p>
-<p>We now show the relative residual norm for all test digit 3 and all test digit 7 in terms of all 10 autoencoders.</p>
-<p>We notice in the two figures, that most of the test digits 3 and 7 are best approximated in terms of their own autoencoder.</p>
-<p><img alt="" src="/images/ONEautoencoderclassifierresiduala.png" width="700"></p>
-<p>We show in the figure below the  approximation of digit 4 (top) and digit 5 (bottom) obtained from the reconstruction using autoencoders of classes 0 to 9. We notice in the figure, both 4 and 5 are best reconstructed by their own autoencoder.</p>
-<p><img alt="" src="/images/ONEautoencoderclassifierresidualb.png" width="700"></p>
-<p>We show in the figure below the  approximation of digit 3 (top) and digit 7 (bottom) obtained from the reconstruction using autoencoders of classes 0 to 9. We notice in the figure, both 3 and 7 are best reconstructed by their own autoencoder.</p>
-<p><img alt="" src="/images/ONEautoencoderclassifierresidualc.png" width="700"></p>
-<hr>
-<hr>
-<p>The layout of this blog is inspired by</p>
-<p><a href="https://blog.keras.io/building-autoencoders-in-keras.html">Building Autoencoders in Keras</a></p>
-<h3>References</h3>
-<ul>
-<li><a href="http://users.mai.liu.se/larel04/matrix-methods/">Matrix Methods in Data Mining and Pattern Recognition</a></li>
-<li><a href="https://pdfs.semanticscholar.org/eda0/95bf52e846e8c560403d485c81e1a932eaeb.pdf">Handwritten digit classification using higher order singular value decomposition</a></li>
-<li><a href="http://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A18011&amp;dswid=9140">Algorithms in data mining using matrix and tensor    methods</a></li>
-<li><a href="http://webstaff.itn.liu.se/~bersa48/files/thesisBerkantSavas.pdf">Analyses and Test of Handwritten Digit Recognition Algorithm</a></li>
-</ul>
-<hr>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>In this post, we introduce <strong>least square residual classifier</strong> based on autoencoders and …</p>
+                <a class="readmore" href="/least-square-residual-classifier-part-ii.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
