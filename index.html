@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Kani's Blog</title>
+        <title>Kani Blog</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 
         <!--[if IE]>
@@ -12,7 +12,7 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">Kani's Blog  <strong>Insallah miles to go before I sleep 
+                <h1><a href="/">Kani Blog  <strong>Insha Allah miles to go before I sleep 
  and miles to go before I sleep</strong></a></h1>
                 <nav><ul>
                     <li><a href="/category/blog.html">Blog</a></li>
@@ -21,7 +21,206 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/about-me.html">About Me <!-- In the name of Allah--></a></h1>
+                    <h1 class="entry-title"><a href="/conservation-laws-ii-weak-solutions.html">Conservation laws - II (Weak solutions) <!--In the name of Almighty--></a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2017-11-10T18:32:00+00:00">
+                Published: Fri 10 November 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nagoor-kanij.html">Nagoor Kani.J</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info --><p>In this article, we will mainly discuss some standard numerical
+techniques to analyse two types of Hyperbolic partial differential equations: </p>
+<h4>Advection equation</h4>
+<div class="math">\begin{equation}
+u_t + a(x,t)~u_x = 0
+\label{advection}
+\end{equation}</div>
+<h4>scalar conservation laws</h4>
+<div class="math">\begin{equation}
+u_t + (f(x,t,u))_x  = 0
+\label{conservation}
+\end{equation}</div>
+<p>The conservation law equation (\ref{conservation}) models the evolution of a conservative quantity like mass, momentum, and energy. That is a quantity whose variation inside a closed domain is equal to its flux across the boundaries, i.e, the amount which flows in minus the amount which flows out, of the closed domain.</p>
+<p>The advection and the conservation law equations are intimately interconnected. In the case when
+<span class="math">\(f = f(u)\)</span>, the conservation equation Eq. 2 can be rewritten in the advective form as</p>
+<div class="math">\begin{equation}
+u_t + \dfrac{df}{du}u_x  = 0
+\end{equation}</div>
+<p>and when a is constant with respect to x, the advection equation can also be viewed as a conservation
+law. For example, a very commonly used prototype example of a nonlinear conservation
+law is the celebrated Burger’s equation</p>
+<div class="math">\begin{equation}
+u_t + \dfrac{1}{2} (u^2)_x  = 0
+\label{burgers}
+\end{equation}</div>
+<p>which becomes</p>
+<div class="math">\begin{equation}
+u_t + u~u_x  = 0
+\end{equation}</div>
+<p>when written in advective form.</p>
+<h3>The method of characteristics</h3>
+<p>Consider the quasi-linear equation of the form</p>
+<div class="math">\begin{equation}
+u_t + a(x,t,u)~u_x + b(x,t,u) = 0
+\label{quasi}
+\end{equation}</div>
+<p>Let <span class="math">\(x = x(t)\)</span> be a parametric curve in the (<span class="math">\(x, t\)</span>) plane
+such that <span class="math">\(\dot{x}= a(x, t, u(x(t), t))\)</span>, where <span class="math">\(u(x(t), t) = z(t)\)</span> is the solution to Eq. \ref{quasi}  along this curve.
+Using the chain rule and plugging into Eq. \ref{quasi} yields</p>
+<div class="math">\begin{equation}
+\dot{z} = \dfrac{\partial u}{\partial t} + \dfrac{\partial u}{\partial x}~\dot{x} = \dfrac{\partial u}{\partial t} + a(x,t,u)~\dfrac{\partial u}{\partial x} = -b(x,t,u) = -b(x,t,z)
+\end{equation}</div>
+<p>i.e, finding a solution for the quasi-linear equation reduces to solving the following system of first
+order ordinary differential equations.</p>
+<div class="math">\begin{equation}
+\begin{aligned}
+\dot{x} &amp;= a(x,t,z) \\
+\dot{z} &amp;= -b(x,t,z) \\
+x(0) &amp;= x_0 \quad z(0) = u(x_0, 0) = u_0(x_0)
+\end{aligned}
+\label{quasicharact}
+\end{equation}</div>
+<p>Equations \ref{quasicharact} are known as the characteristic equations and the resulting solution curves 
+<span class="math">\(x = x(t)\)</span>, <span class="math">\(x(0) = x_0\)</span> are called characteristic curves.</p>
+<p>For example, The characteristic equations for the advection equation is</p>
+<div class="math">\begin{equation}
+\begin{aligned}
+\dot{x} &amp;= a \\
+\dot{z} &amp;= 0 
+\end{aligned}
+\end{equation}</div>
+<p>whose solution is <span class="math">\(x(t) = x_0 + at\)</span>, <span class="math">\(z(t) = u(x(t), t) = u_0(x_0)\)</span>. Two key important points should be
+noted here. i) The characteristic curves are straight lines. ii) The solution u is constant along the
+characteristic lines.  Note that when <span class="math">\(a &gt; 0\)</span> the characteristic lines are directed to the right and
+when <span class="math">\(a &lt; 0\)</span> they are directed to the left. In some sense the sign of <span class="math">\(a\)</span> indicates the direction of
+propagation of information. In fact, the advection equation is also called the one-way wave equation,
+where <span class="math">\(a\)</span> is the speed of propagation of the wave.</p>
+<p>To find the solution <span class="math">\(u(x, t)\)</span> at an arbitrary point (<span class="math">\(x, t\)</span>) in the x-t plane, one needs to follow the
+characteristic line passing through (<span class="math">\(x, t\)</span>) back to its original point at <span class="math">\(t\)</span> equal to 0: (<span class="math">\(x_0 , 0\)</span>) with 
+<span class="math">\(x = x_0 + at\)</span>.
+This leads to</p>
+<div class="math">\begin{equation}
+u(x,t) = u_0(x_0) = u_0(x-at)
+\end{equation}</div>
+<p>The system of characteristic equations for Burger’s equation is given by</p>
+<div class="math">\begin{equation}
+\begin{aligned}
+\dot{x} &amp;= z \\
+\dot{z} &amp;= 0 
+\end{aligned}
+\end{equation}</div>
+<p>The characteristic solution is thus given by</p>
+<div class="math">\begin{equation}
+u(x(t), t) = u_0(x_0) 
+\end{equation}</div>
+<p>where <span class="math">\(x(t) = x_0 + u_0(x_0)t\)</span>.</p>
+<p>Again note that the characteristics are straight lines and the solution is constant along the char-acteristic lines, with one important difference, however; the characteristic curves are no longer
+parallel to each other. As we will see below this has rather unpleasant consequences. Provided
+the characteristics lines do not cross each other, which is guaranteed for at least a short period of
+time if the initial data <span class="math">\(u_0\)</span> is continuous, the solution to Burgers equation is given by the following
+implicit formula</p>
+<div class="math">\begin{equation}
+\begin{aligned}
+u(x,t) &amp;= u_0(x-u_0(x_0)~t) \\
+x &amp;= x_0 + u_0(x_0)t
+\end{aligned}
+\end{equation}</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/conservation-laws-i-continuum-hypothesis.html" rel="bookmark"
+                           title="Permalink to Conservation laws - I (Continuum hypothesis)">Conservation laws - I (Continuum hypothesis) <!--In the name of Almighty--></a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-10-22T18:32:00+01:00">
+                Published: Sun 22 October 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nagoor-kanij.html">Nagoor Kani.J</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->                <p>In ancient Greek philosophy, there were two opposite views about the nature of
+physical phenomena, the discrete, and the continuum. Aristotle was the representative of the
+continuous theory and Democritus of the atomistic one. Despite the quantitative challenge to the continuous nature of reality from Robert Boyle (1666), John Dalton …</p>
+                <a class="readmore" href="/conservation-laws-i-continuum-hypothesis.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/about-me.html" rel="bookmark"
+                           title="Permalink to About Me">About Me <!-- In the name of Allah--></a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2017-09-06T00:00:00+01:00">
                 Published: Wed 06 September 2017
@@ -32,18 +231,13 @@
         </address>
 <p>In <a href="/category/blog.html">Blog</a>.</p>
 
-</footer><!-- /.post-info --><p>I am J.Nagoor Kani, PhD student in the department of petroleum engineering, Heriot Watt University.
+</footer><!-- /.post-info -->                <p>I am J.Nagoor Kani, PhD student in the department of petroleum engineering, Heriot Watt University.
 I completed my master's degree in computational science at Linkoping University and worked as
 Numerical Analyst in the field of computational fluid dynamics applied to drilling engineering.
-I am lucky that I took birth in Tamil Nadu (Virudhunagar) and that I am following the life style of Islam.
-My research interest is in teaching physics and mathematics to
-biological intelligent machines and artificial intelligent machines.
-My email id is kani4jasmines@gmail.com</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+I am lucky that I took birth …</p>
+                <a class="readmore" href="/about-me.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
