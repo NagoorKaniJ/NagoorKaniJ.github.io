@@ -134,6 +134,73 @@ u(x,t) &amp;= u_0(x-u_0(x_0)~t) \\
 x &amp;= x_0 + u_0(x_0)t
 \end{aligned}
 \end{equation}</div>
+<p>We would notice that, the slope of the characteristic curves <span class="math">\(x = x_0 + u_0(x_0)t\)</span> for Burger’s equation (Eq. \ref{burgers})
+increases when <span class="math">\(u_0(x_0)\)</span> increases and decreases when <span class="math">\(u_0(x_0)\)</span> decreases. Therefore, the characteristic curves will
+accordingly diverge or converge toward each other. The aforementioned behaviour can cause two convergent characteristic
+lines to ultimately cross each other at some point in the x-t plane. Beyond such intersection point
+the characteristic solution is no-longer valid, because the value of <span class="math">\(u(x, t)\)</span> at such a point is not
+univalued–one can follow back either one of the two intersecting characteristic lines.</p>
+<p>One way to correct for this flaw is by stopping the characteristic lines as soon as they cross each
+other. Let <span class="math">\(\Sigma\)</span> be the set of such crossing points in the x-t plane. The solution can then be defined
+on both sides of <span class="math">\(\Sigma\)</span> by following the corresponding characteristic line back to its origin. Below we
+will see that <span class="math">\(\Sigma\)</span> is a parametric curve on the form <span class="math">\(x = s(t)\)</span>  and constitutes a
+curve of discontinuity for <span class="math">\(u(x, t)\)</span>. Such a curve is called a shock by analogy to gas dynamics. One
+of the main difficulties in practice is to find the shock curve <span class="math">\(x = s(t)\)</span>. For any given (<span class="math">\(x_1, t_1\)</span>), one
+has to determine whether two characteristic lines cross each other prior to time <span class="math">\(t_1\)</span> along the curve
+<span class="math">\(x = x_1\)</span>.</p>
+<p>After a shock is formed the solution <span class="math">\(u(x, t)\)</span> is no longer valid in the classical sense except for its
+restrictions on the sub-domains located on either side on the shock. Nevertheless, such solution
+can be defined in the weak sense on the whole x-t plane.</p>
+<hr>
+<hr>
+<blockquote>
+<p>Definition (<strong>Weak solution</strong>) A function <span class="math">\(u(x, t)\)</span> is said to be a weak solution for the conservation law
+<span class="math">\(u_t + (f(x, t, u))_x = 0\)</span>, if for any test function <span class="math">\(\phi(x,t)\)</span> sufficiently smooth  with a compact support in (<span class="math">\(- \infty, + \infty\)</span> <span class="math">\() \times\)</span>
+<span class="math">\((0, + \infty)\)</span>, the solution <span class="math">\(u(x, t)\)</span> satisfies
+<div class="math">\begin{equation}
+\int \limits_0^{+ \infty} \int \limits_{-\infty}^{+\infty}  u(x,t)~\phi_t(x,t) dxdt + f(x,t,u)~\phi_x(x,t) dxdt = 0.
+\end{equation}</div>
+</p>
+</blockquote>
+<p>The notion of weak solutions is more general and the set of weak solutions contains
+discontinuous solutions as well as the classical <span class="math">\(\mathit{C}^1\)</span> solutions as a special subset. However, in some
+situations weak solutions are not unique, in the sense that one initial value problem can have more
+than one weak solution. Selecting the physically relevant solution can be tricky. However, common sense suggests that for any given Cauchy problem, only one
+solution is physically relevant. We need an additional constraint to choose this physically relevant
+solution among all the weak solutions. In fact, in reality some viscosity is always associated with
+a given conservation law, so instead we have</p>
+<div class="math">\begin{equation}
+u_t^{\epsilon} + (f(u^{\epsilon}))_x  = \epsilon~\dfrac{\partial^2 u^{\epsilon}}{\partial x^2}
+\label{viscous}
+\end{equation}</div>
+<p>and the zero viscosity limit, <span class="math">\(\epsilon \rightarrow 0\)</span>, is just a convenient mathematical idealization. The above mentioned point is true in
+many physical applications. Therefore, one universally accepted criterion states that the physically
+relevant weak solution for the conservation law <span class="math">\(u_t + (f(u))_x = 0\)</span> is the limit of the solution to the
+viscous equation (Eq. \ref{viscous}) when <span class="math">\(\epsilon \rightarrow 0\)</span>. On the other hand, it is easy to show that, when combined
+with appropriate initial conditions, the latter has a unique solution. In practice, however, it is
+not clear how to establish if a given weak solution is actually the vanishing viscosity limit or not.
+The answer to this question is provided by the concept of entropic solutions. In a nutshell, the
+entropy condition states that the physical solution satisfies a general principle of thermodynamics
+that the entropy always decreases. It remains to find which among the weak solutions for a given
+conservation law satisfies the so-called entropy condition. </p>
+<p>The theorem below provides the necessary ingredients both for
+constructing weak solutions and to gain physical insight.</p>
+<blockquote>
+<p>Theorem  (<strong>Rankine-Hugoniot Condition</strong>) Let <span class="math">\(\Sigma\)</span> be a curve in (<span class="math">\(- \infty, + \infty\)</span>) <span class="math">\(\times\)</span>
+<span class="math">\((0, + \infty)\)</span> parametrized by <span class="math">\(x = s(t)\)</span>. Let <span class="math">\(u(x, t)\)</span> be a <span class="math">\(\mathit{C}^1\)</span> function on both side of but possibly not defined and discontinuous
+across the curve <span class="math">\(\Sigma\)</span>. Assume <span class="math">\(u\)</span> is a solution to the conservation law
+<span class="math">\(u_t + (f(u))_x = 0\)</span> on all points <span class="math">\((x, t)\)</span> not on <span class="math">\(\Sigma\)</span>. For each point <span class="math">\((x_1,t_1) \in \Sigma\)</span> we set</p>
+</blockquote>
+<div class="math">\begin{equation}
+u(x_1,t_1) = \lim \limits_{\Omega_1 \cup \Omega_2 \cup \ni (x,t) \rightarrow (x_1,t_1)} u(x,t)
+\end{equation}</div>
+<blockquote>
+<p>i.e. the limits from the right and from the left of <span class="math">\(\Sigma\)</span>. Then <span class="math">\(u(x, t)\)</span> is a weak solution for the
+conservation law if and only if the shock speed <span class="math">\(\dot{s}\)</span> satisfies</p>
+</blockquote>
+<div class="math">\begin{equation}
+\dot{s} = \dfrac{ds}{dt} = \dfrac{f(u_{+}) - f(u_{-})}{u_{+} - u_{-}}
+\end{equation}</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
