@@ -21,10 +21,10 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/conservation-laws-ii-weak-solutions.html">Conservation laws - II (Weak solutions) <!--In the name of Almighty--></a></h1>
+                    <h1 class="entry-title"><a href="/theorems-in-linear-algebra.html">Theorems in Linear Algebra<!-- In the name of Allah--></a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2017-11-10T18:32:00+00:00">
-                Published: Fri 10 November 2017
+        <abbr class="published" title="2018-02-23T00:00:00+00:00">
+                Published: Fri 23 February 2018
         </abbr>
 
         <address class="vcard author">
@@ -32,170 +32,131 @@
         </address>
 <p>In <a href="/category/blog.html">Blog</a>.</p>
 
-</footer><!-- /.post-info --><p>In this article, we will mainly discuss some standard numerical
-techniques to analyse two types of Hyperbolic partial differential equations: </p>
-<h4>Advection equation</h4>
-<div class="math">\begin{equation}
-u_t + a(x,t)~u_x = 0
-\label{advection}
-\end{equation}</div>
-<h4>scalar conservation laws</h4>
-<div class="math">\begin{equation}
-u_t + (f(x,t,u))_x  = 0
-\label{conservation}
-\end{equation}</div>
-<p>The conservation law equation (\ref{conservation}) models the evolution of a conservative quantity like mass, momentum, and energy. That is a quantity whose variation inside a closed domain is equal to its flux across the boundaries, i.e, the amount which flows in minus the amount which flows out, of the closed domain.</p>
-<p>The advection and the conservation law equations are intimately interconnected. In the case when
-<span class="math">\(f = f(u)\)</span>, the conservation equation Eq. 2 can be rewritten in the advective form as</p>
-<div class="math">\begin{equation}
-u_t + \dfrac{df}{du}u_x  = 0
-\end{equation}</div>
-<p>and when a is constant with respect to x, the advection equation can also be viewed as a conservation
-law. For example, a very commonly used prototype example of a nonlinear conservation
-law is the celebrated Burger’s equation</p>
-<div class="math">\begin{equation}
-u_t + \dfrac{1}{2} (u^2)_x  = 0
-\label{burgers}
-\end{equation}</div>
-<p>which becomes</p>
-<div class="math">\begin{equation}
-u_t + u~u_x  = 0
-\end{equation}</div>
-<p>when written in advective form.</p>
-<h3>The method of characteristics</h3>
-<p>Consider the quasi-linear equation of the form</p>
-<div class="math">\begin{equation}
-u_t + a(x,t,u)~u_x + b(x,t,u) = 0
-\label{quasi}
-\end{equation}</div>
-<p>Let <span class="math">\(x = x(t)\)</span> be a parametric curve in the (<span class="math">\(x, t\)</span>) plane
-such that <span class="math">\(\dot{x}= a(x, t, u(x(t), t))\)</span>, where <span class="math">\(u(x(t), t) = z(t)\)</span> is the solution to Eq. \ref{quasi}  along this curve.
-Using the chain rule and plugging into Eq. \ref{quasi} yields</p>
-<div class="math">\begin{equation}
-\dot{z} = \dfrac{\partial u}{\partial t} + \dfrac{\partial u}{\partial x}~\dot{x} = \dfrac{\partial u}{\partial t} + a(x,t,u)~\dfrac{\partial u}{\partial x} = -b(x,t,u) = -b(x,t,z)
-\end{equation}</div>
-<p>i.e, finding a solution for the quasi-linear equation reduces to solving the following system of first
-order ordinary differential equations.</p>
-<div class="math">\begin{equation}
-\begin{aligned}
-\dot{x} &amp;= a(x,t,z) \\
-\dot{z} &amp;= -b(x,t,z) \\
-x(0) &amp;= x_0 \quad z(0) = u(x_0, 0) = u_0(x_0)
-\end{aligned}
-\label{quasicharact}
-\end{equation}</div>
-<p>Equations \ref{quasicharact} are known as the characteristic equations and the resulting solution curves 
-<span class="math">\(x = x(t)\)</span>, <span class="math">\(x(0) = x_0\)</span> are called characteristic curves.</p>
-<p>For example, The characteristic equations for the advection equation is</p>
-<div class="math">\begin{equation}
-\begin{aligned}
-\dot{x} &amp;= a \\
-\dot{z} &amp;= 0 
-\end{aligned}
-\end{equation}</div>
-<p>whose solution is <span class="math">\(x(t) = x_0 + at\)</span>, <span class="math">\(z(t) = u(x(t), t) = u_0(x_0)\)</span>. Two key important points should be
-noted here. i) The characteristic curves are straight lines. ii) The solution u is constant along the
-characteristic lines.  Note that when <span class="math">\(a &gt; 0\)</span> the characteristic lines are directed to the right and
-when <span class="math">\(a &lt; 0\)</span> they are directed to the left. In some sense the sign of <span class="math">\(a\)</span> indicates the direction of
-propagation of information. In fact, the advection equation is also called the one-way wave equation,
-where <span class="math">\(a\)</span> is the speed of propagation of the wave.</p>
-<p>To find the solution <span class="math">\(u(x, t)\)</span> at an arbitrary point (<span class="math">\(x, t\)</span>) in the x-t plane, one needs to follow the
-characteristic line passing through (<span class="math">\(x, t\)</span>) back to its original point at <span class="math">\(t\)</span> equal to 0: (<span class="math">\(x_0 , 0\)</span>) with 
-<span class="math">\(x = x_0 + at\)</span>.
-This leads to</p>
-<div class="math">\begin{equation}
-u(x,t) = u_0(x_0) = u_0(x-at)
-\end{equation}</div>
-<p>The system of characteristic equations for Burger’s equation is given by</p>
-<div class="math">\begin{equation}
-\begin{aligned}
-\dot{x} &amp;= z \\
-\dot{z} &amp;= 0 
-\end{aligned}
-\end{equation}</div>
-<p>The characteristic solution is thus given by</p>
-<div class="math">\begin{equation}
-u(x(t), t) = u_0(x_0) 
-\end{equation}</div>
-<p>where <span class="math">\(x(t) = x_0 + u_0(x_0)t\)</span>.</p>
-<p>Again note that the characteristics are straight lines and the solution is constant along the char-acteristic lines, with one important difference, however; the characteristic curves are no longer
-parallel to each other. As we will see below this has rather unpleasant consequences. Provided
-the characteristics lines do not cross each other, which is guaranteed for at least a short period of
-time if the initial data <span class="math">\(u_0\)</span> is continuous, the solution to Burgers equation is given by the following
-implicit formula</p>
-<div class="math">\begin{equation}
-\begin{aligned}
-u(x,t) &amp;= u_0(x-u_0(x_0)~t) \\
-x &amp;= x_0 + u_0(x_0)t
-\end{aligned}
-\end{equation}</div>
-<p>We would notice that, the slope of the characteristic curves <span class="math">\(x = x_0 + u_0(x_0)t\)</span> for Burger’s equation (Eq. \ref{burgers})
-increases when <span class="math">\(u_0(x_0)\)</span> increases and decreases when <span class="math">\(u_0(x_0)\)</span> decreases. Therefore, the characteristic curves will
-accordingly diverge or converge toward each other. The aforementioned behaviour can cause two convergent characteristic
-lines to ultimately cross each other at some point in the x-t plane. Beyond such intersection point
-the characteristic solution is no-longer valid, because the value of <span class="math">\(u(x, t)\)</span> at such a point is not
-univalued–one can follow back either one of the two intersecting characteristic lines.</p>
-<p>One way to correct for this flaw is by stopping the characteristic lines as soon as they cross each
-other. Let <span class="math">\(\Sigma\)</span> be the set of such crossing points in the x-t plane. The solution can then be defined
-on both sides of <span class="math">\(\Sigma\)</span> by following the corresponding characteristic line back to its origin. Below we
-will see that <span class="math">\(\Sigma\)</span> is a parametric curve on the form <span class="math">\(x = s(t)\)</span>  and constitutes a
-curve of discontinuity for <span class="math">\(u(x, t)\)</span>. Such a curve is called a shock by analogy to gas dynamics. One
-of the main difficulties in practice is to find the shock curve <span class="math">\(x = s(t)\)</span>. For any given (<span class="math">\(x_1, t_1\)</span>), one
-has to determine whether two characteristic lines cross each other prior to time <span class="math">\(t_1\)</span> along the curve
-<span class="math">\(x = x_1\)</span>.</p>
-<p>After a shock is formed the solution <span class="math">\(u(x, t)\)</span> is no longer valid in the classical sense except for its
-restrictions on the sub-domains located on either side on the shock. Nevertheless, such solution
-can be defined in the weak sense on the whole x-t plane.</p>
-<hr>
-<hr>
+</footer><!-- /.post-info --><hr>
 <blockquote>
-<p>Definition (<strong>Weak solution</strong>) A function <span class="math">\(u(x, t)\)</span> is said to be a weak solution for the conservation law
-<span class="math">\(u_t + (f(x, t, u))_x = 0\)</span>, if for any test function <span class="math">\(\phi(x,t)\)</span> sufficiently smooth  with a compact support in (<span class="math">\(- \infty, + \infty\)</span> <span class="math">\() \times\)</span>
-<span class="math">\((0, + \infty)\)</span>, the solution <span class="math">\(u(x, t)\)</span> satisfies
-<div class="math">\begin{equation}
-\int \limits_0^{+ \infty} \int \limits_{-\infty}^{+\infty}  u(x,t)~\phi_t(x,t) dxdt + f(x,t,u)~\phi_x(x,t) dxdt = 0.
-\end{equation}</div>
+<p>If <span class="math">\(\mathbf{Q} \in \mathbb{R}^{n \times n}\)</span> is orthogonal, then for all <span class="math">\(\mathbf{x}\)</span>, <span class="math">\(\mathbf{y}\)</span> <span class="math">\(\in \mathbb{R}^n\)</span>,
+<div class="math">\begin{equation*}
+\begin{aligned}
+\langle \mathbf{Q} \mathbf{x}, \mathbf{Q} \mathbf{y} \rangle &amp;= \langle \mathbf{x}, \mathbf{y} \rangle \\
+\Vert \mathbf{Q} \mathbf{x} \Vert_2 &amp;= \Vert \mathbf{x}  \Vert_2
+\end{aligned}
+\end{equation*}</div>
 </p>
 </blockquote>
-<p>The notion of weak solutions is more general and the set of weak solutions contains
-discontinuous solutions as well as the classical <span class="math">\(\mathit{C}^1\)</span> solutions as a special subset. However, in some
-situations weak solutions are not unique, in the sense that one initial value problem can have more
-than one weak solution. Selecting the physically relevant solution can be tricky. However, common sense suggests that for any given Cauchy problem, only one
-solution is physically relevant. We need an additional constraint to choose this physically relevant
-solution among all the weak solutions. In fact, in reality some viscosity is always associated with
-a given conservation law, so instead we have</p>
-<div class="math">\begin{equation}
-u_t^{\epsilon} + (f(u^{\epsilon}))_x  = \epsilon~\dfrac{\partial^2 u^{\epsilon}}{\partial x^2}
-\label{viscous}
-\end{equation}</div>
-<p>and the zero viscosity limit, <span class="math">\(\epsilon \rightarrow 0\)</span>, is just a convenient mathematical idealization. The above mentioned point is true in
-many physical applications. Therefore, one universally accepted criterion states that the physically
-relevant weak solution for the conservation law <span class="math">\(u_t + (f(u))_x = 0\)</span> is the limit of the solution to the
-viscous equation (Eq. \ref{viscous}) when <span class="math">\(\epsilon \rightarrow 0\)</span>. On the other hand, it is easy to show that, when combined
-with appropriate initial conditions, the latter has a unique solution. In practice, however, it is
-not clear how to establish if a given weak solution is actually the vanishing viscosity limit or not.
-The answer to this question is provided by the concept of entropic solutions. In a nutshell, the
-entropy condition states that the physical solution satisfies a general principle of thermodynamics
-that the entropy always decreases. It remains to find which among the weak solutions for a given
-conservation law satisfies the so-called entropy condition. </p>
-<p>The theorem below provides the necessary ingredients both for
-constructing weak solutions and to gain physical insight.</p>
+<hr>
 <blockquote>
-<p>Theorem  (<strong>Rankine-Hugoniot Condition</strong>) Let <span class="math">\(\Sigma\)</span> be a curve in (<span class="math">\(- \infty, + \infty\)</span>) <span class="math">\(\times\)</span>
-<span class="math">\((0, + \infty)\)</span> parametrized by <span class="math">\(x = s(t)\)</span>. Let <span class="math">\(u(x, t)\)</span> be a <span class="math">\(\mathit{C}^1\)</span> function on both side of but possibly not defined and discontinuous
-across the curve <span class="math">\(\Sigma\)</span>. Assume <span class="math">\(u\)</span> is a solution to the conservation law
-<span class="math">\(u_t + (f(u))_x = 0\)</span> on all points <span class="math">\((x, t)\)</span> not on <span class="math">\(\Sigma\)</span>. For each point <span class="math">\((x_1,t_1) \in \Sigma\)</span> we set</p>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>. Then there exists an orthogonal matrix <span class="math">\(\mathbf{Q}\)</span>  and an upper triangular matrix <span class="math">\(\mathbf{R}\)</span>  such that <span class="math">\(\mathbf{A} = \mathbf{Q}  \mathbf{R}\)</span>.</p>
+<p>Let  <span class="math">\(\mathbf{u} \in \mathbb{R}^n\)</span> with <span class="math">\(\Vert \mathbf{u}  \Vert_2 = 1\)</span>, and define <span class="math">\(\mathbf{P} \in \mathbb{R}^{n \times n}\)</span> by  <span class="math">\(\mathbf{P} = \mathbf{u}  \mathbf{u}^T\)</span>. Then
+<div class="math">\begin{equation*}
+\begin{aligned}
+\mathbf{P} \mathbf{u} &amp;=  \mathbf{u} \\
+\mathbf{P} \mathbf{v} &amp;= 0 \: \text{if} \: \langle \mathbf{u}, \mathbf{v} \rangle = 0 \\
+\mathbf{P}^2  &amp;=  \mathbf{P} \\
+\mathbf{P}^T  &amp;=  \mathbf{P} \\
+\mathbf{P} &amp;= \: \text{is a rank 1 ortho projector}
+\end{aligned}
+\end{equation*}</div>
+</p>
 </blockquote>
-<div class="math">\begin{equation}
-u(x_1,t_1) = \lim \limits_{\Omega_1 \cup \Omega_2 \cup \ni (x,t) \rightarrow (x_1,t_1)} u(x,t)
-\end{equation}</div>
+<hr>
 <blockquote>
-<p>i.e. the limits from the right and from the left of <span class="math">\(\Sigma\)</span>. Then <span class="math">\(u(x, t)\)</span> is a weak solution for the
-conservation law if and only if the shock speed <span class="math">\(\dot{s}\)</span> satisfies</p>
+<p>Let  <span class="math">\(\mathbf{u} \in \mathbb{R}^n\)</span> with <span class="math">\(\Vert \mathbf{u}  \Vert_2 = 1\)</span>, and define <span class="math">\(\mathbf{Q} \in \mathbb{R}^{n \times n}\)</span> by  <span class="math">\(\mathbf{Q} = \mathbf{I} - 2 \mathbf{u}  \mathbf{u}^T\)</span>. Then
+<div class="math">\begin{equation*}
+\begin{aligned}
+\mathbf{Q} \mathbf{u} &amp;=  -\mathbf{u} \\
+\mathbf{Q} \mathbf{v} &amp;= v \: \text{if} \: \langle \mathbf{u}, \mathbf{v} \rangle = 0 \\
+\mathbf{Q}  &amp;=  \mathbf{Q}^T  (\text{symmetric}) \\
+\mathbf{Q}^{-1}  &amp;=  \mathbf{Q}^T (\text{orthogonal}) \\
+\mathbf{Q}^{-1}  &amp;=  \mathbf{Q} (\text{involution}) \\
+\mathbf{Q} &amp;= \: \text{is reflector or Householder transformation}
+\end{aligned}
+\end{equation*}</div>
+</p>
 </blockquote>
-<div class="math">\begin{equation}
-\dot{s} = \dfrac{ds}{dt} = \dfrac{f(u_{+}) - f(u_{-})}{u_{+} - u_{-}}
-\end{equation}</div>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{x}\)</span>, <span class="math">\(\mathbf{y}\)</span> <span class="math">\(\in \mathbb{R}^n\)</span>,  with <span class="math">\(\mathbf{x} \neq\)</span>,  <span class="math">\(\mathbf{y}\)</span>,  but <span class="math">\(\Vert \mathbf{x} \Vert = \Vert \mathbf{y} \Vert\)</span>. Then there is a
+unique reflector <span class="math">\(\mathbf{Q}\)</span> such that <span class="math">\(\mathbf{Q} \mathbf{x} =  \mathbf{y}\)</span>.</p>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>  be nonsingular. There there exist unique <span class="math">\( \mathbf{Q}\)</span>, <span class="math">\(\mathbf{R}  \in \mathbb{R}^{n \times n}\)</span>  such that <span class="math">\(\mathbf{Q}\)</span> is orthogonal, <span class="math">\(\mathbf{R}\)</span> is upper triangular with positive main-diagonal
+entries, and <span class="math">\(\mathbf{A} = \mathbf{Q}  \mathbf{R}\)</span>.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Consider an overdetermined system
+<div class="math">\begin{equation*}
+\begin{aligned}
+\mathbf{A} \mathbf{x} &amp;= \mathbf{b} \: \mathbf{A} \in \mathbb{R}^{n \times m} \: \mathbf{b} \in \mathbb{R}^n, n &gt; m \\
+\mathbf{r} &amp;=  \mathbf{A} \mathbf{x} - \mathbf{b} \\
+\mathbf{s} &amp;= \mathbf{Q}^T~\mathbf{A} \mathbf{x} - \mathbf{Q}^T~\mathbf{b} \\
+\Vert \mathbf{s} \Vert_2 &amp;= \Vert \mathbf{r} \Vert_2
+\end{aligned}
+\end{equation*}</div>
+</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span>, <span class="math">\(n &gt; m\)</span>. Then there exist <span class="math">\(\mathbf{Q} \in \mathbb{R}^{n \times n}\)</span>  and <span class="math">\(\mathbf{R} \in \mathbb{R}^{n \times m}\)</span> , such that <span class="math">\(\mathbf{Q}\)</span> is orthogonal and <span class="math">\(\mathbf{R} = [\hat{\mathbf{R}} \: 0]\)</span>
+where <span class="math">\(\hat{\mathbf{R}} \in \mathbb{R}^{m \times m}\)</span> is upper
+triangular, and <span class="math">\(\mathbf{A} = \mathbf{Q}  \mathbf{R}\)</span>.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span>,  <span class="math">\(n &gt; m\)</span>, <span class="math">\(\mathbf{b} \in \mathbb{R}^n\)</span> and suppose <span class="math">\(\mathbf{A}\)</span> has full rank.
+Then the least squares problem for the overdetermined system <span class="math">\(\mathbf{A} \mathbf{x} = \mathbf{b}\)</span> has a unique
+solution, which can be found by solving the nonsingular system <span class="math">\(\hat{\mathbf{R}} \mathbf{x} = \hat{\mathbf{c}}\)</span>, where <span class="math">\(\mathbf{c} = [\hat{\mathbf{c}} \: 0] = \mathbf{Q}^T~\mathbf{b}\)</span>, <span class="math">\(\hat{\mathbf{R}} \in \mathbb{R}^{m \times m}\)</span>.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span>,  <span class="math">\(n &gt; m\)</span>, <span class="math">\(\mathbf{b} \in \mathbb{R}^n\)</span>. Then the least squares
+problem for the overdetermined system <span class="math">\(\mathbf{A} \mathbf{x} = \mathbf{b}\)</span> always has a solution. If <span class="math">\(\mathbf{A} &lt;
+m,\)</span> there are infinitely many solutions.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{S}\)</span> be any subset of <span class="math">\(\mathbb{R}^{n}\)</span>. The orthogonal complement of <span class="math">\(\mathbf{S}\)</span>, denoted <span class="math">\(\mathbf{S}^{\perp}\)</span>, is defined to be the set of vectors in <span class="math">\(\mathbb{R}^{n}\)</span> that are orthogonal to <span class="math">\(\mathbf{S}\)</span>. Then for every <span class="math">\(\mathbf{x} \in \mathbb{R}^{n}\)</span>, there exist unique elements <span class="math">\(\mathbf{s} \in \mathbf{S}\)</span> and <span class="math">\(\mathbf{s}^{\perp} \in \mathbf{S}^{\perp}\)</span> for which <span class="math">\(\mathbf{x} = \mathbf{s} + \mathbf{s}^{\perp}\)</span>.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{S}\)</span> be any subset of <span class="math">\(\mathbb{R}^{n}\)</span> and <span class="math">\(\mathbf{b} \in \mathbb{R}^n\)</span>. Then there exist unique <span class="math">\(\mathbf{y} \in \mathbf{S}\)</span> such that
+<div class="math">\begin{equation*}
+\Vert \mathbf{b} - \mathbf{y} \Vert_2 = \min_{\mathbf{s} \in \mathbf{S}} \Vert \mathbf{b} - \mathbf{s} \Vert_2
+\end{equation*}</div>
+<span class="math">\(\mathbf{y} \in \mathbf{S}\)</span> is unique such that <span class="math">\(\mathbf{b} - \mathbf{y} \in \mathbf{S}^{\perp}\)</span>. In other words, <span class="math">\(\mathbf{y}\)</span> is the orthogonal projection of <span class="math">\(\mathbf{b}\)</span> into <span class="math">\(\mathbf{S}\)</span>. Since the least-square problem is to find <span class="math">\(\mathbf{x} \in \mathbb{R}^{m}\)</span> such that
+<div class="math">\begin{equation*}
+\Vert \mathbf{b} - \mathbf{A} \mathbf{x} \Vert_2 = \min_{\mathbf{w} \in \mathbb{R}^{m}} \Vert \mathbf{b} - \mathbf{A} \mathbf{w} \Vert_2
+\end{equation*}</div>
+</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span> be a nonzero matrix with rank <span class="math">\(r\)</span>.
+Then <span class="math">\(\mathbf{A}\)</span> can be expressed as a product
+<div class="math">\begin{equation*}
+\mathbf{A} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+\end{equation*}</div>
+where<span class="math">\(\mathbf{U} \in \mathbb{R}^{n \times n}\)</span> and <span class="math">\(\mathbf{V} \in \mathbb{R}^{m \times m}\)</span> are orthogonal, and <span class="math">\(\mathbf{\Sigma} \in \mathbb{R}^{n \times m}\)</span> is a nonsquare diagonal matrix.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span> be a nonzero matrix
+with rank <span class="math">\(r\)</span>. Then <span class="math">\(\mathbb{R}^{m}\)</span> has an orthonormal basis <span class="math">\(\mathbf{v}_1 \cdots \mathbf{v}_m\)</span>, <span class="math">\(\mathbb{R}^{n}\)</span> has an orthonormal basis <span class="math">\(\mathbf{u}_1 \cdots \mathbf{u}_n\)</span> and there exist <span class="math">\(\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r &gt; 0\)</span> such that
+<div class="math">\begin{equation*}
+\mathbf{A} \mathbf{v}_i=
+\begin{cases}
+\sigma_i \mathbf{u}_i &amp; \text{$i = 1 \cdots r$,}\\
+0 &amp;
+\text{$i=r+1 \cdots m$.}
+\end{cases} \quad
+\mathbf{A}^T \mathbf{u}_i=
+\begin{cases}
+\sigma_i \mathbf{v}_i &amp; \text{$i = 1 \cdots r$,}\\
+0 &amp;
+\text{$i=r+1 \cdots n$.}
+\end{cases}
+\end{equation*}</div>
+</p>
+</blockquote>
+<hr>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -256,6 +217,39 @@ conservation law if and only if the shock speed <span class="math">\(\dot{s}\)</
                     <h1>Other articles</h1>
                     <hr />
                     <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/conservation-laws-ii-weak-solutions.html" rel="bookmark"
+                           title="Permalink to Conservation laws - II (Weak solutions)">Conservation laws - II (Weak solutions) <!--In the name of Almighty--></a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-11-10T18:32:00+00:00">
+                Published: Fri 10 November 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nagoor-kanij.html">Nagoor Kani.J</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->                <p>In this article, we will mainly discuss some standard numerical
+techniques to analyse two types of Hyperbolic partial differential equations: </p>
+<h4>Advection equation</h4>
+<div class="math">\begin{equation}
+u_t + a(x,t)~u_x = 0
+\label{advection}
+\end{equation}</div>
+<h4>scalar conservation laws</h4>
+<div class="math">\begin{equation}
+u_t + (f(x,t,u))_x  = 0
+\label{conservation}
+\end{equation …</div>
+                <a class="readmore" href="/conservation-laws-ii-weak-solutions.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
