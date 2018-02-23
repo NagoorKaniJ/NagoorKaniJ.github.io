@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2018-02-23T15:48:36-00:00</lastmod>
+<lastmod>2018-02-23T16:20:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2018-02-23T15:48:36-00:00</lastmod>
+<lastmod>2018-02-23T16:20:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2018-02-23T15:48:36-00:00</lastmod>
+<lastmod>2018-02-23T16:20:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2018-02-23T15:48:36-00:00</lastmod>
+<lastmod>2018-02-23T16:20:15-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -70,6 +70,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <loc>/least-square-residual-classifier-part-i.html</loc>
 <lastmod>2017-06-13T18:32:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/category/about-me.html</loc>
+<lastmod>2017-09-06T00:00:00-00:01</lastmod>
+<changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
