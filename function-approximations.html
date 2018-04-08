@@ -74,7 +74,7 @@ training set.</p>
 <p><strong>Radial basis functions</strong> <span class="math">\(h_j(x) = \exp(-\frac{x_j - c}{r^2})\)</span>, <span class="math">\(h_j(x) = \sqrt{\frac{r^2 + (x_j - c)^2}{r}}\)</span></p>
 </li>
 <li>
-<p><strong>Neural network basis functions</strong> <span class="math">\(h_j(x) = \tanh(\mathbf{U}^T x + b)\)</span>, <span class="math">\(h_j(x) = \frac{1}{1 + \mathbf{U}^T x + b}\)</span></p>
+<p><strong>Neural network basis functions</strong> <span class="math">\(h_j(x) = \tanh(\mathbf{U}^T x + b)\)</span>, <span class="math">\(h_j(x) = \frac{1}{1 + \exp(\mathbf{U}^T x + b)}\)</span></p>
 </li>
 </ol>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
