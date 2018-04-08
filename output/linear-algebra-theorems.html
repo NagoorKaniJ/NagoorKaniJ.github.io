@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Linear Algebra theorems</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Kani Blog  <strong>Insha Allah miles to go before I sleep 
+ and miles to go before I sleep</strong></a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/linear-algebra-theorems.html" rel="bookmark"
+           title="Permalink to Linear Algebra theorems">Linear Algebra theorems <!-- In the name of Allah--></a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-02-23T00:00:00+00:00">
+                Published: Fri 23 February 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nagoor-kanij.html">Nagoor Kani.J</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->      <hr>
+<blockquote>
+<p>If <span class="math">\(\mathbf{Q} \in \mathbb{R}^{n \times n}\)</span> is orthogonal, then for all <span class="math">\(\mathbf{x}\)</span>, <span class="math">\(\mathbf{y}\)</span> <span class="math">\(\in \mathbb{R}^n\)</span>,
+\begin{equation<em>}
+<div class="math">\begin{aligned}
+\langle \mathbf{Q} \mathbf{x}, \mathbf{Q} \mathbf{y} \rangle &amp;= \langle \mathbf{x}, \mathbf{y} \rangle \\
+\Vert \mathbf{Q} \mathbf{x} \Vert_2 &amp;= \Vert \mathbf{x}  \Vert_2
+\end{aligned}</div>
+\end{equation</em></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>. Then there exists an orthogonal matrix <span class="math">\(\mathbf{Q}\)</span>  and an upper triangular matrix <span class="math">\(\mathbf{R}\)</span>  such that <span class="math">\(\mathbf{A} = \mathbf{Q}  \mathbf{R}\)</span>.</p>
+<p>Let  <span class="math">\(\mathbf{u} \in \mathbb{R}^n\)</span> with <span class="math">\(\Vert \mathbf{u}  \Vert_2 = 1\)</span>, and define <span class="math">\(\mathbf{P} \in \mathbb{R}^{n \times n}\)</span> by  <span class="math">\(\mathbf{P} = \mathbf{u}  \mathbf{u}^T\)</span>. Then
+<div class="math">\begin{equation*}
+\begin{aligned}
+\mathbf{P} \mathbf{u} &amp;=  \mathbf{u} \\
+\mathbf{P} \mathbf{v} &amp;= 0 \: \text{if} \: \langle \mathbf{u}, \mathbf{v} \rangle = 0 \\
+\mathbf{P}^2  &amp;=  \mathbf{P} \\
+\mathbf{P}^T  &amp;=  \mathbf{P} \\
+\mathbf{P} &amp;= \: \text{is a rank 1 ortho projector}
+\end{aligned}
+\end{equation*}</div>
+</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let  <span class="math">\(\mathbf{u} \in \mathbb{R}^n\)</span> with <span class="math">\(\Vert \mathbf{u}  \Vert_2 = 1\)</span>, and define <span class="math">\(\mathbf{Q} \in \mathbb{R}^{n \times n}\)</span> by  <span class="math">\(\mathbf{Q} = \mathbf{I} - 2 \mathbf{u}  \mathbf{u}^T\)</span>. Then
+<div class="math">\begin{equation*}
+\begin{aligned}
+\mathbf{Q} \mathbf{u} &amp;=  -\mathbf{u} \\
+\mathbf{Q} \mathbf{v} &amp;= v \: \text{if} \: \langle \mathbf{u}, \mathbf{v} \rangle = 0 \\
+\mathbf{Q}  &amp;=  \mathbf{Q}^T  (\text{symmetric}) \\
+\mathbf{Q}^{-1}  &amp;=  \mathbf{Q}^T (\text{orthogonal}) \\
+\mathbf{Q}^{-1}  &amp;=  \mathbf{Q} (\text{involution}) \\
+\mathbf{Q} &amp;= \: \text{is reflectors or Householder transformations}
+\end{aligned}
+\end{equation*}</div>
+</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{x}\)</span>, <span class="math">\(\mathbf{y}\)</span> <span class="math">\(\in \mathbb{R}^n\)</span>,  with <span class="math">\(\mathbf{x} \neq\)</span>,  <span class="math">\(\mathbf{y}\)</span>,  but <span class="math">\(\Vert \mathbf{x} \Vert = \Vert \mathbf{y} \Vert\)</span>. Then there is a
+unique reflector <span class="math">\(\mathbf{Q}\)</span> such that <span class="math">\(\mathbf{Q} \mathbf{x} =  \mathbf{y}\)</span>.</p>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>  be nonsingular. There there exist unique <span class="math">\( \mathbf{Q}\)</span>, <span class="math">\(\mathbf{R}  \in \mathbb{R}^{n \times n}\)</span>  such that <span class="math">\(\mathbf{Q}\)</span> is orthogonal, $ \mathbf{R} $ is upper triangular with positive main-diagonal
+entries, and $ \mathbf{A} = \mathbf{Q}  \mathbf{R} $.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Consider an overdetermined system
+<div class="math">\begin{equation*}
+\begin{aligned}
+\mathbf{A} \mathbf{x} &amp;= \mathbf{b} \: \mathbf{A} \in \mathbb{R}^{n \times m} \: \mathbf{b} \in \mathbb{R}^n, n &gt; m \\
+\mathbf{r} &amp;=  \mathbf{A} \mathbf{x} - \mathbf{b} \\
+\mathbf{s} &amp;= \mathbf{Q}^T~\mathbf{A} \mathbf{x} - \mathbf{Q}^T~\mathbf{b} \\
+\Vert \mathbf{s} \Vert_2 &amp;= \Vert \mathbf{r} \Vert_2
+\end{aligned}
+\end{equation*}</div>
+</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span>, <span class="math">\(n &gt; m\)</span>. Then there exist <span class="math">\(\mathbf{Q} \in \mathbb{R}^{n \times n}\)</span>  and <span class="math">\(\mathbf{R} \in \mathbb{R}^{n \times m}\)</span> , such that <span class="math">\(\mathbf{Q}\)</span> is orthogonal and <span class="math">\(\mathbf{R} = [\hat{\mathbf{R}} \: 0]\)</span>
+where <span class="math">\(\hat{\mathbf{R}} \in \mathbb{R}^{m \times m}\)</span> is upper
+triangular, and <span class="math">\(\mathbf{A} = \mathbf{Q}  \mathbf{R}\)</span>.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span>,  <span class="math">\(n &gt; m\)</span>, <span class="math">\(\mathbf{b} \in \mathbb{R}^n\)</span> and suppose <span class="math">\(\mathbf{A}\)</span> has full rank.
+Then the least squares problem for the overdetermined system <span class="math">\(\mathbf{A} \mathbf{x} = \mathbf{b}\)</span> has a unique
+solution, which can be found by solving the nonsingular system <span class="math">\(\hat{\mathbf{R}} \mathbf{x} = \hat{\mathbf{c}}\)</span>, where <span class="math">\(\mathbf{c} = [\hat{\mathbf{c}} \: 0] = \mathbf{Q}^T~\mathbf{b}\)</span>, <span class="math">\(\hat{\mathbf{R}} \in \mathbb{R}^{m \times m}\)</span>.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span>,  <span class="math">\(n &gt; m\)</span>, <span class="math">\(\mathbf{b} \in \mathbb{R}^n\)</span>. Then the least squares
+problem for the overdetermined system <span class="math">\(\mathbf{A} \mathbf{x} = \mathbf{b}\)</span> always has a solution. If <span class="math">\(\mathbf{A} &lt;
+m,\)</span> there are infinitely many solutions.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{S}\)</span> be any subset of <span class="math">\(\mathbb{R}^{n}\)</span>. The orthogonal complement of <span class="math">\(\mathbf{S}\)</span>, denoted <span class="math">\(\mathbf{S}^{\perp}\)</span>, is defined to be the set of vectors in <span class="math">\(\mathbb{R}^{n}\)</span> that are orthogonal to <span class="math">\(\mathbf{S}\)</span>. Then for every <span class="math">\(\mathbf{x} \in \mathbb{R}^{n}\)</span>, there exist unique elements <span class="math">\(\mathbf{s} \in \mathbf{S}\)</span> and <span class="math">\(\mathbf{s}^{\perp} \in \mathbf{S}^{\perp}\)</span> for which <span class="math">\(\mathbf{x} = \mathbf{s} + \mathbf{s}^{\perp}\)</span>.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{S}\)</span> be any subset of <span class="math">\(\mathbb{R}^{n}\)</span> and <span class="math">\(\mathbf{b} \in \mathbb{R}^n\)</span>. Then there exist unique <span class="math">\(\mathbf{y} \in \mathbf{S}\)</span> such that
+<div class="math">\begin{equation*}
+\Vert \mathbf{b} - \mathbf{y} \Vert_2 = \min_{\mathbf{s} \in \mathbf{S}} \Vert \mathbf{b} - \mathbf{s} \Vert_2
+\end{equation*}</div>
+<span class="math">\(\mathbf{y} \in \mathbf{S}\)</span> is unique such that <span class="math">\(\mathbf{b} - \mathbf{y} \in \mathbf{S}^{\perp}\)</span>. In other words, <span class="math">\(\mathbf{y}\)</span> is the orthogonal projection of <span class="math">\(\mathbf{b}\)</span> into <span class="math">\(\mathbf{S}\)</span>. Since the least-square problem is to find <span class="math">\(\mathbf{x} \in \mathbb{R}^{m}\)</span> such that
+<div class="math">\begin{equation*}
+\Vert \mathbf{b} - \mathbf{A} \mathbf{x} \Vert_2 = \min_{\mathbf{w} \in \mathbb{R}^{m}} \Vert \mathbf{b} - \mathbf{A} \mathbf{w} \Vert_2
+\end{equation*}</div>
+</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span> be a nonzero matrix with rank <span class="math">\(r\)</span>.
+Then <span class="math">\(\mathbf{A}\)</span> can be expressed as a product
+<div class="math">\begin{equation*}
+\mathbf{A} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+\end{equation*}</div>
+where<span class="math">\(\mathbf{U} \in \mathbb{R}^{n \times n}\)</span> and <span class="math">\(\mathbf{V} \in \mathbb{R}^{m \times m}\)</span> are orthogonal, and <span class="math">\(\mathbf{\Sigma} \in \mathbb{R}^{n \times m}\)</span> is a nonsquare diagonal matrix.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Let <span class="math">\(\mathbf{A} \in \mathbb{R}^{n \times m}\)</span> be a nonzero matrix
+with rank <span class="math">\(r\)</span>. Then <span class="math">\(\mathbb{R}^{m}\)</span> has an orthonormal basis <span class="math">\(\mathbf{v}_1 \cdots \mathbf{v}_m\)</span>, <span class="math">\(\mathbb{R}^{n}\)</span> has an orthonormal basis <span class="math">\(\mathbf{u}_1 \cdots \mathbf{u}_n\)</span> and there exist <span class="math">\(\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r &gt; 0\)</span> such that
+<div class="math">\begin{equation*}
+\mathbf{A} \mathbf{v}_i=
+\begin{cases}
+\sigma_i \mathbf{u}_i &amp; \text{$i = 1 \cdots r$,}\\
+0 &amp;
+\text{$i=r+1 \cdots m$.}
+\end{cases} \quad
+\mathbf{A}^T \mathbf{u}_i=
+\begin{cases}
+\sigma_i \mathbf{v}_i &amp; \text{$i = 1 \cdots r$,}\\
+0 &amp;
+\text{$i=r+1 \cdots n$.}
+\end{cases}
+\end{equation*}</div>
+</p>
+</blockquote>
+<hr>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

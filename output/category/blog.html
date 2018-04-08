@@ -15,16 +15,17 @@
                 <h1><a href="/">Kani Blog  <strong>Insha Allah miles to go before I sleep 
  and miles to go before I sleep</strong></a></h1>
                 <nav><ul>
+                    <li><a href="/category/about-me.html">About Me</a></li>
                     <li class="active"><a href="/category/blog.html">Blog</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/about-me.html">About Me <!-- In the name of Allah--></a></h1>
+                    <h1 class="entry-title"><a href="/function-approximations.html">Function approximations<!-- In the name of Allah--></a></h1>
 <footer class="post-info">
-        <abbr class="published" title="2017-09-06T00:00:00+01:00">
-                Published: Wed 06 September 2017
+        <abbr class="published" title="2018-05-07T00:00:00+01:00">
+                Published: Mon 07 May 2018
         </abbr>
 
         <address class="vcard author">
@@ -32,18 +33,190 @@
         </address>
 <p>In <a href="/category/blog.html">Blog</a>.</p>
 
-</footer><!-- /.post-info --><p>I am J.Nagoor Kani, PhD student in the department of petroleum engineering, Heriot Watt University.
-I completed my master's degree in computational science at Linkoping University and worked as
-Numerical Analyst in the field of computational fluid dynamics applied to drilling engineering.
-I am lucky that I took birth in Tamil Nadu (Virudhunagar) and that I am following the life style of Islam.
-My research interest is in teaching physics and mathematics to
-biological intelligent machines and artificial intelligent machines.
-My email id is kani4jasmines@gmail.com</p>                </article>
+</footer><!-- /.post-info --><hr>
+<p>This blog post discuss about approximating a functional relationship between the given input and the desired output quantity of interest. One possibility of the need for such approximations arises where computing the desired output is very expensive for a given input. For example, the function value may be the outcome of many high fidelity simulations (solving high dimensional partial differential equations) and it may take a lot of computing time to compute one function value. In such situations, the goal
+would be to derive a functional approximation in order to obtain (approximate) function values much quicker using only a finite set of data points (training set).</p>
+<p>The training set, in which there are <span class="math">\(p\)</span> pairs is represented by
+</p>
+<div class="math">\begin{equation}
+\mathbf{T} = \lbrace (\mathbf{x}_i, y_i) \rbrace_{i=1}^p
+\label{trainingset}
+\end{equation}</div>
+<p>where <span class="math">\(\mathbf{x}_i\)</span>, <span class="math">\(y_i\)</span> represents the <span class="math">\(i\)</span>th input vector and output respectively.</p>
+<p>Most likely, the model for the function approximation <span class="math">\(f(\mathbf{x})\)</span> is expressed as a linear combination of a set of <span class="math">\(m\)</span> fixed functions that takes the form</p>
+<hr>
+<div class="math">\begin{equation}
+f(\mathbf{x}) = \sum_{j=1}^m w_j~h_j(\mathbf{x})
+\label{function}
+\end{equation}</div>
+<hr>
+<p>where <span class="math">\(h_j(\mathbf{x})\)</span>  is the <span class="math">\(j\)</span>th fixed function. These fixed functions (<span class="math">\(h_j(\mathbf{x})\)</span>) are often
+called basis functions by analogy with the concept of a vector being composed of a
+linear combination of basis vectors. Very often, the basis functions are fixed and the learning problem to determine optimal function approximation for a given training set (Eq. \eqref{trainingset}) involve solving a set of equations for the optimal weight values (<span class="math">\(\lbrace w_j \rbrace_{j=1}^m\)</span>) implied by the
+training set.</p>
+<p>There are many classical models (<span class="math">\(f(\mathbf{x})\)</span>) classified based on the type of basis functions used in Eq. \eqref{function}. Few of the classical set of basis functions  are listed below</p>
+<ol>
+<li>
+<p><strong>Polynomial basis functions</strong>  <span class="math">\(h_j(x) = x^j\)</span></p>
+</li>
+<li>
+<p><strong>Fourier basis functions</strong>  <span class="math">\(h_j(x) = \sin(\frac{2 \pi j (x - \theta_j)}{m})\)</span></p>
+</li>
+<li>
+<p><strong>Wavelet basis functions</strong> <span class="math">\(h_j(x) = \exp(i a x) \exp(\frac{-x^2}{2 \sigma})\)</span>, <span class="math">\(h_j(x) = \frac{1}{\sqrt{2 \pi} \sigma^3} \left( \exp(\frac{-x^2}{2 \sigma}) \cdot (\frac{x^2}{\sigma^2} - 1) \right)\)</span></p>
+</li>
+<li>
+<p><strong>Radial basis functions</strong> <span class="math">\(h_j(x) = \exp(-\frac{x_j - c}{r^2})\)</span>, <span class="math">\(h_j(x) = \sqrt{\frac{r^2 + (x_j - c)^2}{r}}\)</span></p>
+</li>
+<li>
+<p><strong>Neural network basis functions</strong> <span class="math">\(h_j(x) = \tanh(\mathbf{U}^T x + b)\)</span>, <span class="math">\(h_j(x) = \frac{1}{1 + \mathbf{U}^T x + b}\)</span></p>
+</li>
+</ol>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
                     <hr />
                     <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/theorems-in-linear-algebra.html" rel="bookmark"
+                           title="Permalink to Theorems in Linear Algebra">Theorems in Linear Algebra<!-- In the name of Allah--></a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-02-23T00:00:00+00:00">
+                Published: Fri 23 February 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nagoor-kanij.html">Nagoor Kani.J</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->                <hr>
+<blockquote>
+<p>If <span class="math">\(\mathbf{Q} \in \mathbb{R}^{n \times n}\)</span> is orthogonal, then for all <span class="math">\(\mathbf{x}\)</span>, <span class="math">\(\mathbf{y}\)</span> <span class="math">\(\in \mathbb{R}^n\)</span>,
+<div class="math">\begin{equation*}
+\begin{aligned}
+\langle \mathbf{Q} \mathbf{x}, \mathbf{Q} \mathbf{y} \rangle &amp;= \langle \mathbf{x}, \mathbf{y} \rangle \\
+\Vert \mathbf{Q} \mathbf{x} \Vert_2 &amp;= \Vert \mathbf …</div></p></blockquote>
+                <a class="readmore" href="/theorems-in-linear-algebra.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/conservation-laws-ii-weak-solutions.html" rel="bookmark"
+                           title="Permalink to Conservation laws - II (Weak solutions)">Conservation laws - II (Weak solutions) <!--In the name of Almighty--></a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-11-10T18:32:00+00:00">
+                Published: Fri 10 November 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nagoor-kanij.html">Nagoor Kani.J</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->                <p>In this article, we will mainly discuss some standard numerical
+techniques to analyse two types of Hyperbolic partial differential equations: </p>
+<h4>Advection equation</h4>
+<div class="math">\begin{equation}
+u_t + a(x,t)~u_x = 0
+\label{advection}
+\end{equation}</div>
+<h4>scalar conservation laws</h4>
+<div class="math">\begin{equation}
+u_t + (f(x,t,u))_x  = 0
+\label{conservation}
+\end{equation …</div>
+                <a class="readmore" href="/conservation-laws-ii-weak-solutions.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/conservation-laws-i-continuum-hypothesis.html" rel="bookmark"
+                           title="Permalink to Conservation laws - I (Continuum hypothesis)">Conservation laws - I (Continuum hypothesis) <!--In the name of Almighty--></a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-10-22T18:32:00+01:00">
+                Published: Sun 22 October 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/nagoor-kanij.html">Nagoor Kani.J</a>
+        </address>
+<p>In <a href="/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info -->                <p>In ancient Greek philosophy, there were two opposite views about the nature of
+physical phenomena, the discrete, and the continuum. Aristotle was the representative of the
+continuous theory and Democritus of the atomistic one. Despite the quantitative challenge to the continuous nature of reality from Robert Boyle (1666), John Dalton …</p>
+                <a class="readmore" href="/conservation-laws-i-continuum-hypothesis.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
